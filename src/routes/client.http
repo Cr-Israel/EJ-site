@@ -1,0 +1,6 @@
+@host = localhost
+@port = 3333
+@url = http://localhost:3333
+
+### Get Student
+GET {{url}}/get-student/555555 HTTP/1.1
