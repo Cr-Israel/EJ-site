@@ -3,4 +3,4 @@
 @url = http://localhost:3333
 
 ### Get Student
-GET {{url}}/get-student/555555 HTTP/1.1
+GET {{url}}/get-student/222222 HTTP/1.1
