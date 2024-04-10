@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import database from "../../../in-memory-database/database"
+import { prisma } from "../../lib/prisma";
 import { z } from "zod";
 
 export class GetStudentController {
@@ -10,12 +10,51 @@ export class GetStudentController {
 
     const { studentId } = getStudentParams.parse(request.params)
 
-    const student = await database.find((student) => student.studentId === studentId)
+    const student = await prisma.student.findUnique({
+      where: {
+        id: studentId
+      },
+      include: {
+        hardskills: {
+          select: {
+            id: true,
+            name: true,
+          }
+        },
+        softskills: {
+          select: {
+            id: true,
+            name: true,
+          }
+        }
+      }
+    })
 
     if (!student) {
       return reply.status(404).send({ messsage: 'Estudante não encontrado' });
     }
 
-    reply.send(student)
+    reply.send({
+      student: {
+        id: student.id,
+        name: student.name,
+        lastname: student.lastname,
+        course: student.course,
+        github: student.github,
+        email: student.email,
+        hardskills: student.hardskills.map(hardskill => {
+          return {
+            id: hardskill.id,
+            name: hardskill.name,
+          }
+        }),
+        softskills: student.softskills.map(softskill => {
+          return {
+            id: softskill.id,
+            name: softskill.name,
+          }
+        })
+      }
+    })
   }
 }
