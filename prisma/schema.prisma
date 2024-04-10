@@ -1,18 +1,46 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model Student {
-  id         String   @id @default(uuid())
-  name       String
-  lastname   String
-  course     String
-  hardskills String[]
-  softkills  String[]
-  projects   String[]
+  id       String @id @default(uuid())
+  name     String
+  lastname String
+  course   String
+  github   String
+  email    String
+
+  hardskills Hardskill[]
+  softskills Softskill[]
+  projects   Project[]
+}
+
+model Hardskill {
+  id   String @id @default(uuid())
+  name String
+
+  Student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?
+}
+
+model Softskill {
+  id   String @id @default(uuid())
+  name String
+
+  Student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String[]
+  description String[]
+
+  Student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?
 }
