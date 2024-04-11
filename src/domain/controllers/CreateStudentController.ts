@@ -1,5 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { prisma } from "../../lib/prisma";
+import { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 export class CreateStudentController {
@@ -12,10 +13,10 @@ export class CreateStudentController {
       email: z.string(),
       hardskills: z.array(z.string()),
       softskills: z.array(z.string()),
-      // projects: z.array(z.object({
-      //   name: z.string(),
-      //   description: z.string()
-      // }))
+      projects: z.array(z.object({
+        name: z.string(),
+        description: z.string()
+      }))
     })
 
     const {
@@ -26,7 +27,7 @@ export class CreateStudentController {
       email,
       hardskills,
       softskills,
-      // projects
+      projects
     } = createStudentBody.parse(request.body)
 
     const student = await prisma.student.create({
@@ -50,13 +51,19 @@ export class CreateStudentController {
             })
           }
         },
-        // projects: {
-        //   createMany: {
-        //     data: projects.map(project => {
-        //       return { name: project, description: project }
-        //     })
-        //   }
-        // }
+        projects: {
+          createMany: {
+            data: projects.map(project => {
+              return {
+                name: project.name,
+                description: project.description
+              } as Object
+            })
+          }
+        }
+      },
+      include: {
+        projects: true,
       }
     })
     return reply.status(201).send({ studentId: student.id })

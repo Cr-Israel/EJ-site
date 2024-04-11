@@ -44,13 +44,11 @@ export class GetStudentController {
         email: student.email,
         hardskills: student.hardskills.map(hardskill => {
           return {
-            id: hardskill.id,
-            name: hardskill.name,
+            name: hardskill.name
           }
         }),
         softskills: student.softskills.map(softskill => {
           return {
-            id: softskill.id,
             name: softskill.name,
           }
         })
