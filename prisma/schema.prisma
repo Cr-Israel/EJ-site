@@ -21,26 +21,26 @@ model Student {
 }
 
 model Hardskill {
-  id   String @id @default(uuid())
-  name String
-
-  Student   Student? @relation(fields: [studentId], references: [id])
+  id        String  @id @default(uuid())
+  name      String
   studentId String?
+
+  Student Student? @relation(fields: [studentId], references: [id])
 }
 
 model Softskill {
-  id   String @id @default(uuid())
-  name String
-
-  Student   Student? @relation(fields: [studentId], references: [id])
+  id        String  @id @default(uuid())
+  name      String
   studentId String?
+
+  Student Student? @relation(fields: [studentId], references: [id])
 }
 
 model Project {
-  id          String   @id @default(uuid())
-  name        String[]
-  description String[]
+  id          String  @id @default(uuid())
+  name        String
+  description String
+  studentId   String?
 
-  Student   Student? @relation(fields: [studentId], references: [id])
-  studentId String?
+  Student Student? @relation(fields: [studentId], references: [id])
 }
