@@ -17,14 +17,18 @@ export class GetStudentController {
       include: {
         hardskills: {
           select: {
-            id: true,
             name: true,
           }
         },
         softskills: {
           select: {
-            id: true,
             name: true,
+          }
+        },
+        projects: {
+          select: {
+            name: true,
+            description: true
           }
         }
       }
@@ -50,6 +54,12 @@ export class GetStudentController {
         softskills: student.softskills.map(softskill => {
           return {
             name: softskill.name,
+          }
+        }),
+        projects: student.projects.map(project => {
+          return {
+            name: project.name,
+            description: project.description
           }
         })
       }
