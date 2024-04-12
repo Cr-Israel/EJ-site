@@ -7,17 +7,28 @@ POST {{url}}/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Cesár",
-  "lastname": "Silveira",
+  "name": "Diego",
+  "lastname": "Bonito",
   "course": "Ciência da Computação",
-  "github": "silveira-cesar",
-  "email": "silveirac@teste.com",
-  "hardskills": ["React", "TypeScript", "Tawild", "Next"],
-  "softskills": ["Prestativo", "Trabalho em equipe", "Amigo"],
+  "github": "BonitoDiego03",
+  "email": "bonitodiego03@teste.com",
+  "hardskills": [
+    {
+      "name": "Node"
+    },
+    {
+      "name": "PHP"
+    }
+  ],
+  "softskills": [
+    {
+      "name": "Inteligente"
+    }
+  ],
   "projects": [
     {
     "name": "Site",
-    "description": "Fez o Front-End da aplicação"
+    "description": "Fez o Back-End da aplicação"
     },
     {
       "name": "other",
@@ -27,4 +38,4 @@ Content-Type: application/json
 }
 
 ### Get Student
-GET {{url}}/get-student/b579a250-8078-477f-8f64-6be9e3a6f8b9 HTTP/1.1
+GET {{url}}/get-student/43a028f9-3569-4542-9336-4690ec698119 HTTP/1.1
