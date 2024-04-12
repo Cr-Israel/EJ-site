@@ -2,7 +2,7 @@ import fastify from "fastify";
 import { getStudent } from "../routes/get-student";
 import { createStudent } from "../routes/create-student";
 
-const app = fastify({ logger: true });
+const app = fastify();
 
 app.register(getStudent)
 app.register(createStudent)
