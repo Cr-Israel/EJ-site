@@ -44,13 +44,17 @@ Os endpoints presentes na aplicação são:
     3 - 'http://localhost:3333/get-all' -> Endpoint para receber todas as informações da tabela student do Banco de Dados
 
 ## Parâmetros de requisição e resposta
+### 1
 O primeiro Endpoint 'http://localhost:3333/create', recebe as informações do student, vindas pelo compor da requisição(request.body).
 
+### 2
 O segundo Endpoint 'http://localhost:3333/get-student/:studentId', recebe como parâmetro o ID do student(studentId) e devolve todas as informações deste usuário.
 
+### 3
 O terceiro Endpoint 'http://localhost:3333/get-all', envia todas as informação da tabela student do Banco de Dados.
 
 ## Exemplos de solicitações e respostas
+### 1
 No primeiro Endpoint, enviamos no corpo da requisição(request.body) as informações necessárias para cadastrar um student no Banco de Dados:
 {
   "name": "John",
@@ -96,6 +100,7 @@ Connection: close
   "studentId": "43b0ecd8-7efe-4f60-a8e5-ab72bedc8d4c"
 }
 
+### 2
 No segundo Endpoint, eu envie junto da rota, o ID do student(studentId):
 http://localhost:3333/get-student/get-student/43b0ecd8-7efe-4f60-a8e5-ab72bedc8d4c 
 
@@ -143,6 +148,7 @@ Connection: close
   }
 }
 
+### 3
 No terceiro Endpoint, faço requisição ao servidor, para que ele me envie todos os cadastros na tabela student, do meu Banco de Dados:
 http://localhost:3333/get-all
 
