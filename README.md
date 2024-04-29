@@ -1,8 +1,7 @@
 
 # API
 
-O objetivo desta API é responder as requisições do Front-End, com as ações necessárias.
-
+O objetivo desta API é servir as requisições do Front-End, com as ações necessárias.
 O Front-End desta aplicação é um site de uma empresa junior.
 
 ## Stack utilizada
